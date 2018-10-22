@@ -69,7 +69,7 @@ BUILD)
   -PjacocoEnabled=true \
   -Dsonar.projectKey=org.sonarsource.sonarqube:sonarqube \
   -Dsonar.organization=sonarsource \
-  -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.host.url=https://lagoon3.sonarsource.com \
   -Dsonar.login=$SONAR_TOKEN
   ;;
 

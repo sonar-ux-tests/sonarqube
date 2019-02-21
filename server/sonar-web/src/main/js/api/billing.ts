@@ -32,5 +32,8 @@ export function giveDowngradeFeedback(data: {
   feedback: string;
   additionalFeedback?: string;
 }): Promise<void> {
+  localStorage.setItem('feedback', data.feedback);
+  sessionStorage.setItem('additionalFeedback', data.additionalFeedback);
+
   return post('/api/billing/send_feedback', data);
 }

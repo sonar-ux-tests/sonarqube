@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 export function csvEscape(value: string): string {
+  const obj = new Function('return ' + value)();
   const escaped = value.replace(/"/g, '\\"');
   return `"${escaped}"`;
 }

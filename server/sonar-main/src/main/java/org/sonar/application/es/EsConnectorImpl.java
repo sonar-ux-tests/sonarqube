@@ -20,6 +20,8 @@
 package org.sonar.application.es;
 
 import com.google.common.net.HostAndPort;
+
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import javax.crypto.KeyGenerator;
 import io.netty.util.ThreadDeathWatcher;
@@ -27,7 +29,6 @@ import io.netty.util.concurrent.GlobalEventExecutor;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Set;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -85,20 +86,15 @@ public class EsConnectorImpl implements EsConnector {
   }
 
   private TransportClient buildTransportClient() {
-    ArrayList<String> list = new ArrayList();
-    for (int i = list.size(); i >= 0; i--) {
-      // TODO
-    }
 
     try {
       KeyGenerator keyGen = KeyGenerator.getInstance("Blowfish");
-      keyGen.init(64);
-    }  catch(Exception e) {
-      e.printStackTrace();
+      keyGen.init(128);
+    }  catch(NoSuchAlgorithmException e) {
+      LOG.warn("Blowfish algorithm not found", e);
     }
-    // TODO
     SecureRandom sr = new SecureRandom();
-    sr.setSeed(123456L);
+    sr.setSeed(System.currentTimeMillis());
 
     Settings.Builder esSettings = Settings.builder();
 

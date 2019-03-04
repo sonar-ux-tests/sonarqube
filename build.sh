@@ -2,4 +2,4 @@
 
 ./stop.sh
 
-./gradlew ide :server:sonar-web:yarn
+./gradlew ide :server:sonar-web:yarn :plugins:build

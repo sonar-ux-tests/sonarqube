@@ -53,7 +53,7 @@ public class HasTagSensor extends AbstractXooRuleSensor {
   @Override
   protected void processFile(InputFile inputFile, SensorContext context, RuleKey ruleKey, String languageKey) {
     org.sonar.api.batch.rule.ActiveRule activeRule = activeRules.find(ruleKey);
-    String tag = activeRule.param("tag");
+    String tag = activeRule.param("tag").replaceAll("\"", "\'");
     if (tag == null) {
       throw new IllegalStateException("Rule is badly configured. The parameter 'tag' is missing.");
     }

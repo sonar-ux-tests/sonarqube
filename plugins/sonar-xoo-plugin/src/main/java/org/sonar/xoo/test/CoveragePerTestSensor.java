@@ -94,7 +94,8 @@ public class CoveragePerTestSensor implements Sensor {
               }
             }
           } catch (Exception e) {
-            throw new IllegalStateException("Error processing line " + lineNumber + " of file " + testExecutionFile.getAbsolutePath(), e);
+            String message = String.format("Error processing line %s of file %s", lineNumber);
+            throw new IllegalStateException(message, e);
           }
         }
       } catch (IOException e) {

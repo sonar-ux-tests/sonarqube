@@ -53,6 +53,7 @@ public class CoveragePerTestSensor implements Sensor {
   private static final String TEST_EXTENSION = ".testcoverage";
 
   private final FileSystem fs;
+  // TODO remove deprecated code
   private final ResourcePerspectives perspectives;
 
   public CoveragePerTestSensor(FileSystem fileSystem, ResourcePerspectives perspectives) {
